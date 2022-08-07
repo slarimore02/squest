@@ -15,6 +15,7 @@ FROM python:3.10-slim-bullseye
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE=Squest.settings
 ENV POETRY_VERSION=1.1.13
+ENV WHITENOISE_VERSION=6.2.0
 ENV NODE_VERSION=16.15.1
 ENV NVM_VERSION=v0.39.1
 ENV NVM_DIR=/root/.nvm
@@ -28,8 +29,8 @@ RUN set -ex \
     && apt-get install -y --no-install-recommends $RUN_DEPS $BUID_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
-# Install poetry
-RUN pip install "poetry==$POETRY_VERSION"
+# Install poetry and whitenoise
+RUN pip install "poetry==$POETRY_VERSION" "whitenoise==$WHITENOISE_VERSION"
 
 # Install node and NPM from NodeJS
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
